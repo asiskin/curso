@@ -49,12 +49,14 @@ if($_POST)
 
     if(count($arrayDeErrores) == 0) {
 
+      $usuario = armarUsuario($_POST);
+      guardarUsuario($usuario);
+
       $archivo = $_FILES["avatar"]["tmp_name"];
       $nombreDelArchivo = $_FILES["avatar"]["name"];
       $extension = pathinfo($nombreDelArchivo,PATHINFO_EXTENSION);
 
       $nombre = dirname(__FILE__) . "/img/" . $_POST["username"] . ".$extension";
-      var_dump($nombre);exit;
 
       move_uploaded_file($archivo, $nombre);
 
